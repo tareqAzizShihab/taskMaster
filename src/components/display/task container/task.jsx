@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { mainDataContext, TMOContext } from "../../../context";
 import convertDate from "../../../useFunc";
-export default function Task({ data }) {
+export default function Task({ data, updateDisplay }) {
   const { openTaskModal } = useContext(TMOContext);
   const { mainData, setMainData } = useContext(mainDataContext);
   const [taskData, setTaskData] = useState(data);
@@ -49,6 +49,10 @@ export default function Task({ data }) {
       }
     });
     setMainData(newMainData);
+    updateDisplay((prev) => ({
+      ...prev,
+      tasks: prev.tasks.filter((task) => task.id !== deleteData.id),
+    }));
   }
 
   return (

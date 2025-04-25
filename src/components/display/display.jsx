@@ -5,7 +5,7 @@ import convertDate from "../../useFunc";
 import Header from "./header";
 import TaskContainer from "./task container/taskContainer";
 export default function Display() {
-  const dataToDisplay = useContext(displayContext).dataToDisplay;
+  const { dataToDisplay, setDataToDisplay } = useContext(displayContext);
 
   return (
     <div className="flex-1 overflow-auto">
@@ -19,7 +19,7 @@ export default function Display() {
                 : convertDate(dataToDisplay.projectDueDate)
             }
           />
-          <TaskContainer tasks={dataToDisplay.tasks} />
+          <TaskContainer props={{ dataToDisplay, setDataToDisplay }} />
         </TMOProvider>
       </div>
     </div>
