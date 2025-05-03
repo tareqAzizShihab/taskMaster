@@ -1,14 +1,18 @@
-import { useContext, useState } from "react";
-import { displayContext, mainDataContext } from "../../context";
+import { useContext } from "react";
+import {
+  displayContext,
+  mainDataContext,
+  projectModalControlContext,
+} from "../../context";
 import convertDate from "../../useFunc";
 import AddProjectModal from "../addProjectModal";
 
 export default function Projects() {
   const { mainData, setMainData } = useContext(mainDataContext);
   const { setDataToDisplay, dataToDisplay } = useContext(displayContext);
-
-  const handleProjectModal = () =>
-    setProjectModalOptions((prev) => ({ ...prev, isOpen: !prev.isOpen }));
+  const { projectModalOptions, setProjectModalOptions } = useContext(
+    projectModalControlContext
+  );
 
   function handleRemove(data) {
     const newData = mainData
@@ -18,11 +22,6 @@ export default function Projects() {
     setMainData(newData);
   }
 
-  const [projectModalOptions, setProjectModalOptions] = useState({
-    isOpen: false,
-    handleProjectModal,
-    dataToFill: "",
-  });
   return (
     <div className="pt-4 mt-4 border-t border-gray-200">
       <h3 className="text-xs font-semibold text-gray-500 uppercase tracking-wider px-4 mb-2">

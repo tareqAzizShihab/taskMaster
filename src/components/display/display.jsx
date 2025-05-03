@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { displayContext } from "../../context";
-import TMOProvider from "../../reducer";
+import TMOProvider from "../../takModalController";
 import convertDate from "../../useFunc";
 import Header from "./header";
 import TaskContainer from "./task container/taskContainer";

@@ -1,6 +1,7 @@
 import { useState } from "react";
 // eslint-disable-next-line no-unused-vars
 import { displayContext, mainDataContext } from "../context";
+import ProjectControlProvider from "../projectModalController";
 import Display from "./display/display";
 import Sidebar from "./sidebar/sidebar";
 
@@ -16,8 +17,10 @@ export default function Page() {
     <div className="flex h-full">
       <mainDataContext.Provider value={{ mainData, setMainData }}>
         <displayContext.Provider value={{ dataToDisplay, setDataToDisplay }}>
-          <Sidebar />
-          <Display />
+          <ProjectControlProvider>
+            <Sidebar />
+            <Display />
+          </ProjectControlProvider>
         </displayContext.Provider>
       </mainDataContext.Provider>
     </div>
