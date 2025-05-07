@@ -14,9 +14,12 @@ export default function Display() {
           <Header
             description={dataToDisplay.projectDescription}
             projectDue={
-              dataToDisplay.projectName === "Inbox"
+              dataToDisplay.projectName === "Inbox" ||
+              dataToDisplay.projectName === "Today"
                 ? ""
-                : convertDate(dataToDisplay.projectDueDate)
+                : dataToDisplay.projectDueDate
+                ? convertDate(dataToDisplay.projectDueDate)
+                : ""
             }
           />
           <TaskContainer props={{ dataToDisplay, setDataToDisplay }} />

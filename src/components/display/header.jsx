@@ -15,16 +15,24 @@ export default function Header({ description, projectDue }) {
 
   return (
     <div className="flex justify-between items-center mb-8">
-      <div>
-        <div className="flex items-end gap-2">
-          <h2 className="text-2xl font-bold text-gray-800">{name}</h2>
-          <p
-            className={`font-semibold ${!projectDue && "hidden"} text-gray-600`}
-          >{`Due: ${projectDue}`}</p>
-        </div>
+      {hasProject ? (
+        <div>
+          <div className="flex items-end gap-2">
+            <h2 className="text-2xl font-bold text-gray-800">{name}</h2>
+            <p
+              className={`font-semibold ${
+                !projectDue && "hidden"
+              } text-gray-600`}
+            >
+              {`Due: ${projectDue}`}
+            </p>
+          </div>
 
-        <p className="text-gray-500">{description}</p>
-      </div>
+          <p className="text-gray-500">{description}</p>
+        </div>
+      ) : (
+        <div className="text-xl font-semibold">No project added</div>
+      )}
       {hasProject ? (
         <button
           onClick={() => openTaskModal(name)}

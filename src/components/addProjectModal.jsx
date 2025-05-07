@@ -1,7 +1,7 @@
 import "flatpickr/dist/themes/material_blue.css";
 import { useContext, useEffect, useState } from "react";
 import Flatpickr from "react-flatpickr";
-import { mainDataContext } from "../context";
+import { displayContext, mainDataContext } from "../context";
 
 export default function AddProjectModal({
   options: { isOpen, handleProjectModal, dataToFill },
@@ -17,6 +17,7 @@ export default function AddProjectModal({
 
   const [isNameErr, setIsNameErr] = useState(null);
   const { mainData, setMainData } = useContext(mainDataContext);
+  const { setDataToDisplay } = useContext(displayContext);
 
   useEffect(() => {
     if (isOpen) {
@@ -50,6 +51,7 @@ export default function AddProjectModal({
     if (formData.projectName) {
       function createProject() {
         setMainData((prev) => [...prev, formData]);
+        setDataToDisplay(formData);
       }
 
       function saveProject() {
@@ -161,60 +163,6 @@ export default function AddProjectModal({
                   className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
               </div>
-
-              {/* <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
-                  Color
-                </label>
-                <div className="flex space-x-2">
-                  <label className="flex items-center">
-                    <input
-                      type="radio"
-                      name="projectColor"
-                      value="red"
-                      className="sr-only peer"
-                      checked
-                    />
-                    <span className="w-8 h-8 bg-red-500 rounded-full peer-checked:ring-2 peer-checked:ring-offset-2 peer-checked:ring-red-500"></span>
-                  </label>
-                  <label className="flex items-center">
-                    <input
-                      type="radio"
-                      name="projectColor"
-                      value="blue"
-                      className="sr-only peer"
-                    />
-                    <span className="w-8 h-8 bg-blue-500 rounded-full peer-checked:ring-2 peer-checked:ring-offset-2 peer-checked:ring-blue-500"></span>
-                  </label>
-                  <label className="flex items-center">
-                    <input
-                      type="radio"
-                      name="projectColor"
-                      value="green"
-                      className="sr-only peer"
-                    />
-                    <span className="w-8 h-8 bg-green-500 rounded-full peer-checked:ring-2 peer-checked:ring-offset-2 peer-checked:ring-green-500"></span>
-                  </label>
-                  <label className="flex items-center">
-                    <input
-                      type="radio"
-                      name="projectColor"
-                      value="purple"
-                      className="sr-only peer"
-                    />
-                    <span className="w-8 h-8 bg-purple-500 rounded-full peer-checked:ring-2 peer-checked:ring-offset-2 peer-checked:ring-purple-500"></span>
-                  </label>
-                  <label className="flex items-center">
-                    <input
-                      type="radio"
-                      name="projectColor"
-                      value="yellow"
-                      className="sr-only peer"
-                    />
-                    <span className="w-8 h-8 bg-yellow-500 rounded-full peer-checked:ring-2 peer-checked:ring-offset-2 peer-checked:ring-yellow-500"></span>
-                  </label>
-                </div>
-              </div> */}
             </div>
 
             <div className="mt-6 flex justify-end space-x-3">

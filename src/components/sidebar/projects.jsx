@@ -54,7 +54,7 @@ export default function Projects() {
                   isActive ? "opacity-100" : "group-hover:opacity-100"
                 }`}
               >
-                {convertDate(project.projectDueDate)}
+                {project.projectDueDate && convertDate(project.projectDueDate)}
               </p>
             </button>
 
